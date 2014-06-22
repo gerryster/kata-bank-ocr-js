@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 (function() {
-  var fileData;
   var AccountsReader = require("../accounts_reader.js");
   var fs = require('fs');
+
+  var data;
   var inputFile = process.argv[2];
 
   fs.readFile(inputFile,'utf8',function(err,data){
