@@ -63,6 +63,9 @@ Account.parse = function(accountText){
   return new Account(parsedAccount);
 }
 
+/*
+  Determines if the account number is valid based off of a simple checksum.
+*/
 Account.prototype.isValid = function() {
   var sum = this.number.split('').reduce(
     function(previous,current,index) {
@@ -83,7 +86,7 @@ function extractRawDigit(position, accountText) {
 };
 
 /*
-* Returns a string of a raw digit string with newlines for pretty printing.
+  Returns a string of a raw digit string with newlines for pretty printing.
 */
 function prettyRawDigit(rawDigit) {
   return [rawDigit.slice(0, 3), rawDigit.slice(3, 6), rawDigit.slice(6, 9)].join("\n");
