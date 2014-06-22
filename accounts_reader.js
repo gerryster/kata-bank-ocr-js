@@ -1,4 +1,4 @@
-var AccountParser = require("./account_parser.js");
+var Account = require("./account.js");
 
 var RAW_ACCOUNT_LINE_HEIGHT = 4;
 
@@ -12,7 +12,7 @@ function AccountsReader(fileData) {
 }
 
 /*
-  Returns an array of the machine readable account numbers from the input.
+  Returns an array of the parsed Accounts.
 */
 AccountsReader.prototype.accounts = function() {
   var inputLines = this.fileData.split("\n");
@@ -22,7 +22,7 @@ AccountsReader.prototype.accounts = function() {
   inputLines.forEach(function(inputLine){
     recordBuffer.push(inputLine);
     if(recordBuffer.length === RAW_ACCOUNT_LINE_HEIGHT) {
-      accounts.push(AccountParser.parse(recordBuffer.join("\n")));
+      accounts.push(Account.parse(recordBuffer.join("\n")));
       recordBuffer = [];
     }
   });

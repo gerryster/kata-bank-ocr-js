@@ -13,7 +13,8 @@
       process.exit(1);
    }
    reader = new AccountsReader(data);
-   console.log("accounts: \n" + reader.accounts().join("\n") + "\n");
+   var accountNumbers = reader.accounts().map(function(act){ return act.number; })
+   console.log("accounts: \n" + accountNumbers.join("\n") + "\n");
   });
 
 }).call(this)

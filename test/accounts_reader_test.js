@@ -18,6 +18,7 @@ describe("AccountsReader", function() {
       "  |  |  |  |  |  |  |  |  |\n" +
       "                           \n";
     var ar = new AccountsReader(fileData);
-    assert.deepEqual(ar.accounts(), ["000000000", "111111111"]);
+    assert.deepEqual(
+        ar.accounts().map(function(act){ return act.number; }), ["000000000", "111111111"]);
   });
 });

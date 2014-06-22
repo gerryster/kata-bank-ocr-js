@@ -50,13 +50,17 @@ RAW_TO_VALUE[
   " _|"
 ] = "9";
 
-exports.parse = function(accountText){
+function Account(number) {
+  this.number = number
+}
+
+Account.parse = function(accountText){
   var parsedAccount = "";
   for(var digitPlace=0; digitPlace < 9; digitPlace++) {
     parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, accountText)]
   }
 
-  return parsedAccount;
+  return new Account(parsedAccount);
 }
 
 function extractRawDigit(position, accountText) {
@@ -76,3 +80,5 @@ function extractRawDigit(position, accountText) {
 function prettyRawDigit(rawDigit) {
   return [rawDigit.slice(0, 3), rawDigit.slice(3, 6), rawDigit.slice(6, 9)].join("\n");
 }
+
+module.exports = Account;
