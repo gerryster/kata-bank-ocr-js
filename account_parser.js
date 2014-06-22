@@ -1,58 +1,57 @@
+var RAW_TO_VALUE = {};
+RAW_TO_VALUE[
+  " _ " +
+  "| |" +
+  "|_|"
+] = "0";
+RAW_TO_VALUE[
+  "   " +
+  "  |" +
+  "  |"
+] = "1";
+RAW_TO_VALUE[
+  " _ " +
+  " _|" +
+  "|_ "
+] = "2";
+RAW_TO_VALUE[
+  " _ " +
+  " _|" +
+  " _|"
+] = "3";
+RAW_TO_VALUE[
+  "   " +
+  "|_|" +
+  "  |"
+] = "4";
+RAW_TO_VALUE[
+  " _ " +
+  "|_ " +
+  " _|"
+] = "5";
+RAW_TO_VALUE[
+  " _ " +
+  "|_ " +
+  "|_|"
+] = "6";
+RAW_TO_VALUE[
+  " _ " +
+  "  |" +
+  "  |"
+] = "7";
+RAW_TO_VALUE[
+  " _ " +
+  "|_|" +
+  "|_|"
+] = "8";
+RAW_TO_VALUE[
+  " _ " +
+  "|_|" +
+  " _|"
+] = "9";
+
 exports.parse = function(accountText){
   var parsedAccount = "";
-  var RAW_TO_VALUE = {};
-  RAW_TO_VALUE[
-    " _ " +
-    "| |" +
-    "|_|"
-  ] = "0";
-  RAW_TO_VALUE[
-    "   " +
-    "  |" +
-    "  |"
-  ] = "1";
-  RAW_TO_VALUE[
-    " _ " +
-    " _|" +
-    "|_ "
-  ] = "2";
-  RAW_TO_VALUE[
-    " _ " +
-    " _|" +
-    " _|"
-  ] = "3";
-  RAW_TO_VALUE[
-    "   " +
-    "|_|" +
-    "  |"
-  ] = "4";
-  RAW_TO_VALUE[
-    " _ " +
-    "|_ " +
-    " _|"
-  ] = "5";
-  RAW_TO_VALUE[
-    " _ " +
-    "|_ " +
-    "|_|"
-  ] = "6";
-  RAW_TO_VALUE[
-    " _ " +
-    "  |" +
-    "  |"
-  ] = "7";
-  RAW_TO_VALUE[
-    " _ " +
-    "|_|" +
-    "|_|"
-  ] = "8";
-  RAW_TO_VALUE[
-    " _ " +
-    "|_|" +
-    " _|"
-  ] = "9";
-
-
   for(var digitPlace=0; digitPlace < 9; digitPlace++) {
     parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, accountText)]
   }
@@ -60,7 +59,7 @@ exports.parse = function(accountText){
   return parsedAccount;
 }
 
-var extractRawDigit = function(position, accountText) {
+function extractRawDigit(position, accountText) {
   var CHARACTER_WIDTH = 3;
   var accountLines = accountText.split("\n");
   var extractedRawDigit = "";
@@ -74,6 +73,6 @@ var extractRawDigit = function(position, accountText) {
 /*
 * Returns a string of a raw digit string with newlines for pretty printing.
 */
-var prettyRawDigit = function(rawDigit) {
+function prettyRawDigit(rawDigit) {
   return [rawDigit.slice(0, 3), rawDigit.slice(3, 6), rawDigit.slice(6, 9)].join("\n");
 }
