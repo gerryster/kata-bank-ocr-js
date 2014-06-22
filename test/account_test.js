@@ -30,6 +30,26 @@ describe("Account.parse", function() {
     assert.equal(Account.parse(raw).number, "123456789");
   });
 
+  describe("illegibility", function() {
+    var illegibleRaw =
+      "    _  _  _  _  _  _  _  _ \n" +
+      "| || || || || || || || || |\n" +
+      "|_||_|| ||_||_||_||_||_||_|\n" +
+      "                           \n";
+    var act = Account.parse(illegibleRaw);
+
+    it("replaces illegible digits with question marks", function() {
+      assert.equal(act.number, "?0?000000");
+    });
+
+    it("is not legible", function() {
+      assert.ok(!act.isLegible());
+    });
+
+    it("is not valid", function() {
+      assert.ok(!act.isValid());
+    });
+  });
 });
 
 describe("Account.isValid", function() {
@@ -41,7 +61,9 @@ describe("Account.isValid", function() {
     assert.ok(new Account("345882865").isValid());
   });
 
-  it("457508000 is valid", function() {
-    assert.ok(new Account("457508000").isValid());
+  it("457508000 is valid and legible", function() {
+    var act = new Account("457508000");
+    assert.ok(act.isValid());
+    assert.ok(act.isLegible());
   });
 });

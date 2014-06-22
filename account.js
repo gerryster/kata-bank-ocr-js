@@ -57,16 +57,25 @@ function Account(number) {
 Account.parse = function(accountText){
   var parsedAccount = "";
   for(var digitPlace=0; digitPlace < 9; digitPlace++) {
-    parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, accountText)]
+    parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, accountText)] || "?"
   }
 
   return new Account(parsedAccount);
 }
 
 /*
+  Returns true if all numbers in the account are readable.
+*/
+Account.prototype.isLegible = function() {
+  return this.number.indexOf("?") < 0;
+}
+
+/*
   Determines if the account number is valid based off of a simple checksum.
 */
 Account.prototype.isValid = function() {
+  if(!this.isLegible()) { return false; }
+
   var sum = this.number.split('').reduce(
     function(previous,current,index) {
       return (9 - index) * current + previous;
