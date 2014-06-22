@@ -63,6 +63,14 @@ Account.parse = function(accountText){
   return new Account(parsedAccount);
 }
 
+Account.prototype.isValid = function() {
+  var sum = this.number.split('').reduce(
+    function(previous,current,index) {
+      return (9 - index) * current + previous;
+    }, 0);
+  return (sum % 11) === 0;
+}
+
 function extractRawDigit(position, accountText) {
   var CHARACTER_WIDTH = 3;
   var accountLines = accountText.split("\n");
