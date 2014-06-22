@@ -67,3 +67,18 @@ describe("Account.isValid", function() {
     assert.ok(act.isLegible());
   });
 });
+
+describe("Account.format", function() {
+  it("passes through a valid account", function() {
+    var actString = "345882865";
+    assert.equal(new Account(actString).format(), actString);
+  });
+
+  it("adds ILL to an illegible account", function() {
+    assert.equal(new Account("?00000000").format(), "?00000000 ILL");
+  });
+
+  it("adds ERR to an invalid account", function() {
+    assert.equal(new Account("664371495").format(), "664371495 ERR");
+  });
+});

@@ -85,6 +85,20 @@ Account.prototype.isValid = function() {
   return (sum % 11) === 0;
 }
 
+/*
+  Returns a formatted string version of the account.  The suffixes "ILL" and
+  "ERR" are added to illegible and invalid accounts respectively.
+*/
+Account.prototype.format = function() {
+  var suffix = "";
+  if(!this.isLegible()) {
+    suffix = " ILL";
+  } else if(!this.isValid()) {
+    suffix = " ERR";
+  }
+  return this.number + suffix;
+}
+
 function extractRawDigit(position, accountText) {
   var accountLines = accountText.split("\n");
   var extractedRawDigit = "";
