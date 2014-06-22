@@ -11,13 +11,53 @@ exports.parse = function(accountText){
     "  |" +
     "  |"
   ] = "1";
+  RAW_TO_VALUE[
+    " _ " +
+    " _|" +
+    "|_ "
+  ] = "2";
+  RAW_TO_VALUE[
+    " _ " +
+    " _|" +
+    " _|"
+  ] = "3";
+  RAW_TO_VALUE[
+    "   " +
+    "|_|" +
+    "  |"
+  ] = "4";
+  RAW_TO_VALUE[
+    " _ " +
+    "|_ " +
+    " _|"
+  ] = "5";
+  RAW_TO_VALUE[
+    " _ " +
+    "|_ " +
+    "|_|"
+  ] = "6";
+  RAW_TO_VALUE[
+    " _ " +
+    "  |" +
+    "  |"
+  ] = "7";
+  RAW_TO_VALUE[
+    " _ " +
+    "|_|" +
+    "|_|"
+  ] = "8";
+  RAW_TO_VALUE[
+    " _ " +
+    "|_|" +
+    " _|"
+  ] = "9";
 
-  if(RAW_TO_VALUE[extractRawDigit(0, accountText)] === "0") {
-    return "000000000";
+
+  for(var digitPlace=0; digitPlace < 9; digitPlace++) {
+    parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, accountText)]
   }
-  else {
-    return "111111111";
-  }
+
+  return parsedAccount;
 }
 
 var extractRawDigit = function(position, accountText) {
@@ -30,3 +70,10 @@ var extractRawDigit = function(position, accountText) {
 
   return extractedRawDigit;
 };
+
+/*
+* Returns a string of a raw digit string with newlines for pretty printing.
+*/
+var prettyRawDigit = function(rawDigit) {
+  return [rawDigit.slice(0, 3), rawDigit.slice(3, 6), rawDigit.slice(6, 9)].join("\n");
+}
