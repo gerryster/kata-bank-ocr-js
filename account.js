@@ -50,6 +50,8 @@ RAW_TO_VALUE[
   " _|"
 ] = "9";
 
+  var RAW_CHARACTER_WIDTH = 3;
+
 function Account(number) {
   this.number = number
 }
@@ -84,11 +86,12 @@ Account.prototype.isValid = function() {
 }
 
 function extractRawDigit(position, accountText) {
-  var CHARACTER_WIDTH = 3;
   var accountLines = accountText.split("\n");
   var extractedRawDigit = "";
   [0,1,2].forEach(function(lineNum) {
-     extractedRawDigit += accountLines[lineNum].slice(position * CHARACTER_WIDTH, (position + 1) * CHARACTER_WIDTH);
+     var start = position * RAW_CHARACTER_WIDTH;
+     var end = (position + 1) * RAW_CHARACTER_WIDTH;
+     extractedRawDigit += accountLines[lineNum].slice(start, end);
   });
 
   return extractedRawDigit;
