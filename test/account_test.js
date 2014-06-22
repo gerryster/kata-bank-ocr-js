@@ -30,17 +30,18 @@ describe("Account.parse", function() {
     assert.equal(Account.parse(raw).number, "123456789");
   });
 
-  describe("Account.isValid", function() {
-    it("all ones is invalid", function() {
-      assert.ok(!new Account("111111111").isValid());
-    });
+});
 
-    it("345882865 is valid", function() {
-      assert.ok(new Account("345882865").isValid());
-    });
+describe("Account.isValid", function() {
+  it("all ones is invalid", function() {
+    assert.ok(!new Account("111111111").isValid());
+  });
 
-    it("457508000 is valid", function() {
-      assert.ok(new Account("457508000").isValid());
-    });
+  it("345882865 is valid", function() {
+    assert.ok(new Account("345882865").isValid());
+  });
+
+  it("457508000 is valid", function() {
+    assert.ok(new Account("457508000").isValid());
   });
 });
