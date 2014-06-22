@@ -1,0 +1,14 @@
+{
+  "name": "kata-bank-ocr",
+  "version": "0.0.0",
+  "description": "Ryan Gerry's JavaScript solution to the Bank OCR Kata (http://codingdojo.org/cgi-bin/index.pl?KataBankOCR).",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "kata"
+  ],
+  "author": "Ryan Gerry",
+  "license": "MIT"
+}
