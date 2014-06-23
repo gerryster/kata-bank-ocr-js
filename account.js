@@ -54,17 +54,18 @@ RAW_TO_VALUE[
 
 var RAW_CHARACTER_WIDTH = 3;
 
-function Account(number) {
+function Account(number, rawAccountText) {
   this.number = number;
+  this.rawAccountText = rawAccountText;
 }
 
-Account.parse = function(accountText){
+Account.parse = function(rawAccountText){
   var parsedAccount = "";
   for (var digitPlace = 0; digitPlace < 9; digitPlace++) {
-    parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, accountText)] || "?"
+    parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, rawAccountText)] || "?"
   }
 
-  return new Account(parsedAccount);
+  return new Account(parsedAccount, rawAccountText);
 }
 
 /*
@@ -99,6 +100,13 @@ Account.prototype.format = function() {
     suffix = " ERR";
   }
   return this.number + suffix;
+}
+
+/*
+  Returns the original raw OCR'ed digit for the zero based position.
+*/
+Account.prototype.rawDigit = function(position) {
+  return extractRawDigit(position, this.rawAccountText);
 }
 
 function extractRawDigit(position, accountText) {

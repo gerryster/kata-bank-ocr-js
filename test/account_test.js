@@ -84,3 +84,18 @@ describe("Account.format", function() {
     assert.equal(new Account("664371495").format(), "664371495 ERR");
   });
 });
+
+describe("Account.rawDigit", function() {
+  it("extracts the original raw digit", function() {
+    var raw =
+      "    _  _     _  _  _  _  _ \n" +
+      "  | _| _||_||_ |_   ||_||_|\n" +
+      "  ||_  _|  | _||_|  ||_| _|\n" +
+      "                           \n";
+    var act = Account.parse(raw);
+    assert.equal(act.rawDigit(2), " _ " +
+                                  " _|" +
+                                  " _|");
+  });
+});
+
