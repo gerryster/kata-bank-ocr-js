@@ -1,6 +1,6 @@
 Bank OCR Kata
 =============
-This is my JavaScript solution to the [KataBankOCR](http://codingdojo.org/cgi-bin/index.pl?KataBankOCR).
+My JavaScript solution to the [KataBankOCR](http://codingdojo.org/cgi-bin/index.pl?KataBankOCR).
 
 TRY IT OUT
 ==========
