@@ -1,3 +1,5 @@
+'use strict';
+
 var Account = require("../account.js");
 
 var assert = require("assert");

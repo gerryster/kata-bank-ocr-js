@@ -1,3 +1,5 @@
+'use strict';
+
 var RAW_TO_VALUE = {};
 RAW_TO_VALUE[
   " _ " +
@@ -53,12 +55,12 @@ RAW_TO_VALUE[
 var RAW_CHARACTER_WIDTH = 3;
 
 function Account(number) {
-  this.number = number
+  this.number = number;
 }
 
 Account.parse = function(accountText){
   var parsedAccount = "";
-  for(var digitPlace=0; digitPlace < 9; digitPlace++) {
+  for (var digitPlace = 0; digitPlace < 9; digitPlace++) {
     parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, accountText)] || "?"
   }
 
