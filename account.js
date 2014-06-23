@@ -50,7 +50,7 @@ RAW_TO_VALUE[
   " _|"
 ] = "9";
 
-  var RAW_CHARACTER_WIDTH = 3;
+var RAW_CHARACTER_WIDTH = 3;
 
 function Account(number) {
   this.number = number
