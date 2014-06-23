@@ -1,68 +1,75 @@
 'use strict';
 
-var RAW_TO_VALUE = {};
-RAW_TO_VALUE[
-  " _ " +
-  "| |" +
-  "|_|"
-] = "0";
-RAW_TO_VALUE[
-  "   " +
-  "  |" +
-  "  |"
-] = "1";
-RAW_TO_VALUE[
-  " _ " +
-  " _|" +
-  "|_ "
-] = "2";
-RAW_TO_VALUE[
-  " _ " +
-  " _|" +
-  " _|"
-] = "3";
-RAW_TO_VALUE[
-  "   " +
-  "|_|" +
-  "  |"
-] = "4";
-RAW_TO_VALUE[
-  " _ " +
-  "|_ " +
-  " _|"
-] = "5";
-RAW_TO_VALUE[
-  " _ " +
-  "|_ " +
-  "|_|"
-] = "6";
-RAW_TO_VALUE[
-  " _ " +
-  "  |" +
-  "  |"
-] = "7";
-RAW_TO_VALUE[
-  " _ " +
-  "|_|" +
-  "|_|"
-] = "8";
-RAW_TO_VALUE[
-  " _ " +
-  "|_|" +
-  " _|"
-] = "9";
-
-var RAW_CHARACTER_WIDTH = 3;
-
 function Account(number, rawAccountText) {
   this.number = number;
   this.rawAccountText = rawAccountText;
 }
 
+Account.RAW_TO_VALUE = {};
+Account.RAW_TO_VALUE[
+  " _ " +
+  "| |" +
+  "|_|"
+] = "0";
+Account.RAW_TO_VALUE[
+  "   " +
+  "  |" +
+  "  |"
+] = "1";
+Account.RAW_TO_VALUE[
+  " _ " +
+  " _|" +
+  "|_ "
+] = "2";
+Account.RAW_TO_VALUE[
+  " _ " +
+  " _|" +
+  " _|"
+] = "3";
+Account.RAW_TO_VALUE[
+  "   " +
+  "|_|" +
+  "  |"
+] = "4";
+Account.RAW_TO_VALUE[
+  " _ " +
+  "|_ " +
+  " _|"
+] = "5";
+Account.RAW_TO_VALUE[
+  " _ " +
+  "|_ " +
+  "|_|"
+] = "6";
+Account.RAW_TO_VALUE[
+  " _ " +
+  "  |" +
+  "  |"
+] = "7";
+Account.RAW_TO_VALUE[
+  " _ " +
+  "|_|" +
+  "|_|"
+] = "8";
+Account.RAW_TO_VALUE[
+  " _ " +
+  "|_|" +
+  " _|"
+] = "9";
+
+Account.VALUE_TO_RAW = {}
+Object.keys(Account.RAW_TO_VALUE).forEach(
+  function(raw) {
+    Account.VALUE_TO_RAW[Account.RAW_TO_VALUE[raw]] = raw;
+  }
+);
+
+var RAW_CHARACTER_WIDTH = 3;
+
 Account.parse = function(rawAccountText){
   var parsedAccount = "";
   for (var digitPlace = 0; digitPlace < 9; digitPlace++) {
-    parsedAccount += RAW_TO_VALUE[extractRawDigit(digitPlace, rawAccountText)] || "?"
+    parsedAccount += Account.RAW_TO_VALUE[extractRawDigit(digitPlace, rawAccountText)] || "?"
   }
 
   return new Account(parsedAccount, rawAccountText);

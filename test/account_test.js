@@ -93,9 +93,6 @@ describe("Account.rawDigit", function() {
       "  ||_  _|  | _||_|  ||_| _|\n" +
       "                           \n";
     var act = Account.parse(raw);
-    assert.equal(act.rawDigit(2), " _ " +
-                                  " _|" +
-                                  " _|");
+    assert.equal(act.rawDigit(2), Account.VALUE_TO_RAW["3"]);
   });
 });
-
