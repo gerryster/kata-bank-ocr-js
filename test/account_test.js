@@ -17,7 +17,7 @@ describe("Account.parse", function() {
       "                           \n" +
       "  |  |  |  |  |  |  |  |  |\n" +
       "  |  |  |  |  |  |  |  |  |\n" +
-      "                          \n";
+      "                           \n";
     assert.equal(Account.parse(onesRaw).number, "111111111");
   });
 
