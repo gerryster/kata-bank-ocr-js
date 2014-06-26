@@ -76,6 +76,29 @@ Account.parse = function(rawAccountText){
 }
 
 /*
+  Given a raw digit, it returns the possible alternates which are only off by
+  one stroke.
+*/
+Account.alternateDigits = function(incommingRawDigit) {
+  var alternates = [];
+  Object.keys(Account.RAW_TO_VALUE).forEach(function(rawDigit) {
+    var diffCount = 0;
+    for(var i = 0; i < rawDigit.length; i++) {
+      if(incommingRawDigit.substr(i, 1) != rawDigit.substr(i, 1)) {
+        diffCount++;
+      }
+      if(diffCount > 1) {
+        break;
+      }
+    }
+    if(diffCount === 1) {
+      alternates.push(Account.RAW_TO_VALUE[rawDigit]);
+    }
+  });
+  return alternates;
+}
+
+/*
   Returns true if all numbers in the account are readable.
 */
 Account.prototype.isLegible = function() {
@@ -114,6 +137,26 @@ Account.prototype.format = function() {
 */
 Account.prototype.rawDigit = function(position) {
   return extractRawDigit(position, this.rawAccountText);
+}
+
+/*
+  For invalid or illegible accounts, this calculates possible alternative account numbers.
+*/
+Account.prototype.alternates = function() {
+  var alternates = [];
+  if(this.isValid()) { return alternates; }
+
+  for(var currentPos = 0; currentPos <= 9; currentPos++) {
+    var altDigits = Account.alternateDigits(extractRawDigit(currentPos, this.rawAccountText));
+    altDigits.forEach(function (altDigit) {
+      var accountNum = this.number.substr(0, currentPos) + altDigit + this.number.substr(currentPos + 1);
+      var possibleAccount = new Account(accountNum);
+      if(possibleAccount.isValid()) {
+        alternates.push(possibleAccount.number);
+      }
+    }, this);
+  }
+  return alternates;
 }
 
 function extractRawDigit(position, accountText) {

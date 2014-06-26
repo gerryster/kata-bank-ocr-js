@@ -96,3 +96,29 @@ describe("Account.rawDigit", function() {
     assert.equal(act.rawDigit(2), Account.VALUE_TO_RAW["3"]);
   });
 });
+
+describe("Account.alternateDigits", function() {
+  it("provides alternates for one", function() {
+    assert.deepEqual(Account.alternateDigits(Account.VALUE_TO_RAW["1"]), ["7"]);
+  });
+
+  it("provides alternates for one", function() {
+    assert.deepEqual(Account.alternateDigits(
+      "   " +
+      " _|" +
+      "  |" +
+      "   "), ["1", "4"]);
+  });
+});
+
+describe("Account.alternates", function() {
+  it("all eights", function() {
+    var raw =
+     " _  _  _  _  _  _  _  _  _ \n" +
+     "|_||_||_||_||_||_||_||_||_|\n" +
+     "|_||_||_||_||_||_||_||_||_|\n" +
+     "                           \n";
+    assert.deepEqual(Account.parse(raw).alternates(), ['888886888', '888888988', '888888880']);
+  });
+});
+
